@@ -1,0 +1,3 @@
+/home/lab606/auto_exe/Ceres/build/CMakeFiles/edit_cache.dir
+/home/lab606/auto_exe/Ceres/build/CMakeFiles/kabc.dir
+/home/lab606/auto_exe/Ceres/build/CMakeFiles/rebuild_cache.dir

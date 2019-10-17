@@ -1,0 +1,3 @@
+/home/lab606/auto_exe/detect_opencv/build/CMakeFiles/edit_cache.dir
+/home/lab606/auto_exe/detect_opencv/build/CMakeFiles/detect.dir
+/home/lab606/auto_exe/detect_opencv/build/CMakeFiles/rebuild_cache.dir
