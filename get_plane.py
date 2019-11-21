@@ -40,12 +40,12 @@ class Soulution:
 				ans = [relative2d_3d[i][0],relative2d_3d[i][1]]
 				k = relative2d_3d[i][2]
 		if k!=-1:
-			#print(str(point[0])+" "+ str(point[1])+
-			#"   nearest:"+str(ans[0])+"  "+str(ans[1])+"   "+str(coor3d[k])) # ans
+			print(str(point[0])+" "+ str(point[1])+
+			"   nearest:"+str(ans[0])+"  "+str(ans[1])+"   "+str(coor3d[k])) # ans
 			return " ".join(str(i) for i in coor3d[k])+"\n"
 		else:
-			#print(str(point[0])+" "+ str(point[1])+
-			#"   nearest:"+str(ans[0])+"  "+str(ans[1])+"No_3Dpoint") # ans
+			print(str(point[0])+" "+ str(point[1])+
+			"   nearest:"+str(ans[0])+"  "+str(ans[1])+"No_3Dpoint") # ans
 			return ""
 
 	# 2d_3d对应关系写进txt
@@ -99,6 +99,7 @@ marker = s.detectMark(marker_path)
 
 f = open(plane_path,'w')
 for i in range(len(marker)):
+	print(marker[i][0]+" ")
 	relative2d_3d = s.get2d_3d(colmap_path,marker[i][0])
 	a = s.getNearPoint(marker[i][1],relative2d_3d,coor3d)
 	f.write(a)

@@ -123,6 +123,19 @@ add_plane/fast:
 	$(MAKE) -f CMakeFiles/add_plane.dir/build.make CMakeFiles/add_plane.dir/build
 .PHONY : add_plane/fast
 
+#=============================================================================
+# Target rules for targets named read_ply
+
+# Build rule for target.
+read_ply: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 read_ply
+.PHONY : read_ply
+
+# fast build rule for target.
+read_ply/fast:
+	$(MAKE) -f CMakeFiles/read_ply.dir/build.make CMakeFiles/read_ply.dir/build
+.PHONY : read_ply/fast
+
 add_plane.o: add_plane.cpp.o
 
 .PHONY : add_plane.o
@@ -150,6 +163,33 @@ add_plane.cpp.s:
 	$(MAKE) -f CMakeFiles/add_plane.dir/build.make CMakeFiles/add_plane.dir/add_plane.cpp.s
 .PHONY : add_plane.cpp.s
 
+read_ply.o: read_ply.cpp.o
+
+.PHONY : read_ply.o
+
+# target to build an object file
+read_ply.cpp.o:
+	$(MAKE) -f CMakeFiles/read_ply.dir/build.make CMakeFiles/read_ply.dir/read_ply.cpp.o
+.PHONY : read_ply.cpp.o
+
+read_ply.i: read_ply.cpp.i
+
+.PHONY : read_ply.i
+
+# target to preprocess a source file
+read_ply.cpp.i:
+	$(MAKE) -f CMakeFiles/read_ply.dir/build.make CMakeFiles/read_ply.dir/read_ply.cpp.i
+.PHONY : read_ply.cpp.i
+
+read_ply.s: read_ply.cpp.s
+
+.PHONY : read_ply.s
+
+# target to generate assembly for a file
+read_ply.cpp.s:
+	$(MAKE) -f CMakeFiles/read_ply.dir/build.make CMakeFiles/read_ply.dir/read_ply.cpp.s
+.PHONY : read_ply.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -157,11 +197,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... add_plane"
 	@echo "... rebuild_cache"
+	@echo "... add_plane"
+	@echo "... read_ply"
 	@echo "... add_plane.o"
 	@echo "... add_plane.i"
 	@echo "... add_plane.s"
+	@echo "... read_ply.o"
+	@echo "... read_ply.i"
+	@echo "... read_ply.s"
 .PHONY : help
 
 

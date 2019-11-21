@@ -1,12 +1,13 @@
 #!/bin/bash
 
-work_space="//home//lab606//auto_exe//Data//data4//"
+work_space="//home//lab606//auto_exe//Data//data7//"
 echo "开始检测图像中所有的二维码"
 opencv_path=${work_space}opencv.txt
 detect_path=${work_space}detect.txt
 cd detect_opencv
 cd build
-./detect ${work_space}mynteye_new_1.yml ${work_space}images $opencv_path $detect_path
+./detect ${work_space}calibration.yml ${work_space}images $opencv_path $detect_path
+#./detect ${work_space}mynteye_new_1.yml ${work_space}images $opencv_path $detect_path
 sleep 1s
 echo "每帧中二维码的位姿:            $opencv_path"
 echo "每帧中二维码的底部坐标值:       $detect_path"
@@ -48,6 +49,6 @@ cd ..
 cd ..
 cd pcl
 cd build
-./add_plane //home//lab606//auto_exe//data4//dense//fused.ply //home//lab606//auto_exe//data4//dense//fused_plane.ply -10 10 -1 5
+./add_plane ${work_space}dense//fused.ply ${work_space}dense//fused_plane.ply ${work_space}dense//fused_cut.ply  ${work_space}dense//fused_filter.ply  ${work_space}dense//fused_result.ply ${work_space}dense//1.txt  
 
 

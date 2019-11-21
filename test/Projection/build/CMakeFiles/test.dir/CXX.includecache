@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lab606/test/Project/test.cpp
+iostream
+-
+eigen3/Eigen/Core
+-
+eigen3/Eigen/Geometry
+-
+

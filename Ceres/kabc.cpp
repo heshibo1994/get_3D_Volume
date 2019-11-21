@@ -62,13 +62,19 @@ void get_data1_k(string K_path){
 		colmap.push_back(temp_colmap); //存储所有数据
         opencv.push_back(temp_opencv); //存储所有数据
 	}
+
 	infile_feat.close();
-    for (int i=0;i<10;i++){
-        int p1 = rand() % colmap.size() ;
-        int p2 = rand() % opencv.size() ;
-        //cout<<i<<" "<<p1<<" "<<p2<<" "<<colmap.size()<<endl;
-        colmap_data1.push_back( sqrt((colmap[p1][0] -  colmap[p2][0])*(colmap[p1][0] -  colmap[p2][0]) + (colmap[p1][1] -  colmap[p2][1])*(colmap[p1][1] -  colmap[p2][1])+ (colmap[p1][2] -  colmap[p2][2])*(colmap[p1][2] -  colmap[p2][2])));
-        opencv_data1.push_back( sqrt((opencv[p1][0] -  opencv[p2][0])*(opencv[p1][0] -  opencv[p2][0]) + (opencv[p1][1] -  opencv[p2][1])*(opencv[p1][1] -  opencv[p2][1])+ (opencv[p1][2] -  opencv[p2][2])*(opencv[p1][2] -  opencv[p2][2])));
+    for (int i=0;i<1000;i++){
+        int p1 = rand() % (colmap.size()-1) ;
+        int p2 = rand() % (opencv.size()-1) ;
+        //cout<<i<<" "<<p1<<" "<<p2<<" "<<colmap.size()<<" "<<opencv.size()<<endl;
+        float c = sqrt((colmap[p1][0] -  colmap[p2][0])*(colmap[p1][0] -  colmap[p2][0]) + (colmap[p1][1] -  colmap[p2][1])*(colmap[p1][1] -  colmap[p2][1])+ (colmap[p1][2] -  colmap[p2][2])*(colmap[p1][2] -  colmap[p2][2]));
+        float o = sqrt((opencv[p1][0] -  opencv[p2][0])*(opencv[p1][0] -  opencv[p2][0]) + (opencv[p1][1] -  opencv[p2][1])*(opencv[p1][1] -  opencv[p2][1])+ (opencv[p1][2] -  opencv[p2][2])*(opencv[p1][2] -  opencv[p2][2]));
+        
+        colmap_data1.push_back(c);
+        opencv_data1.push_back(o);
+        cout<<"o "<<o<<" c "<<c<<" "<<c/o<<endl;
+        //cout<<"over"<<endl;
     }
 }
 

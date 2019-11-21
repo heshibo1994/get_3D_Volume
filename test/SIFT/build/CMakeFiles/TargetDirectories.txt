@@ -1,0 +1,3 @@
+/home/lab606/auto_exe/test/SIFT/build/CMakeFiles/rebuild_cache.dir
+/home/lab606/auto_exe/test/SIFT/build/CMakeFiles/test.dir
+/home/lab606/auto_exe/test/SIFT/build/CMakeFiles/edit_cache.dir

@@ -1,3 +1,4 @@
 /home/lab606/auto_exe/pcl/build/CMakeFiles/edit_cache.dir
-/home/lab606/auto_exe/pcl/build/CMakeFiles/add_plane.dir
 /home/lab606/auto_exe/pcl/build/CMakeFiles/rebuild_cache.dir
+/home/lab606/auto_exe/pcl/build/CMakeFiles/add_plane.dir
+/home/lab606/auto_exe/pcl/build/CMakeFiles/read_ply.dir

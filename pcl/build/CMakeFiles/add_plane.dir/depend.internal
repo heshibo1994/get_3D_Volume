@@ -209,14 +209,20 @@ CMakeFiles/add_plane.dir/add_plane.cpp.o
  /usr/include/pcl-1.7/pcl/PolygonMesh.h
  /usr/include/pcl-1.7/pcl/TextureMesh.h
  /usr/include/pcl-1.7/pcl/Vertices.h
+ /usr/include/pcl-1.7/pcl/cloud_iterator.h
+ /usr/include/pcl-1.7/pcl/common/common.h
  /usr/include/pcl-1.7/pcl/common/concatenate.h
  /usr/include/pcl-1.7/pcl/common/copy_point.h
  /usr/include/pcl-1.7/pcl/common/eigen.h
+ /usr/include/pcl-1.7/pcl/common/impl/common.hpp
  /usr/include/pcl-1.7/pcl/common/impl/copy_point.hpp
  /usr/include/pcl-1.7/pcl/common/impl/eigen.hpp
  /usr/include/pcl-1.7/pcl/common/impl/io.hpp
+ /usr/include/pcl-1.7/pcl/common/impl/projection_matrix.hpp
  /usr/include/pcl-1.7/pcl/common/io.h
  /usr/include/pcl-1.7/pcl/common/point_tests.h
+ /usr/include/pcl-1.7/pcl/common/projection_matrix.h
+ /usr/include/pcl-1.7/pcl/common/time.h
  /usr/include/pcl-1.7/pcl/console/print.h
  /usr/include/pcl-1.7/pcl/conversions.h
  /usr/include/pcl-1.7/pcl/correspondence.h
@@ -224,10 +230,15 @@ CMakeFiles/add_plane.dir/add_plane.cpp.o
  /usr/include/pcl-1.7/pcl/filters/boost.h
  /usr/include/pcl-1.7/pcl/filters/conditional_removal.h
  /usr/include/pcl-1.7/pcl/filters/filter.h
+ /usr/include/pcl-1.7/pcl/filters/filter_indices.h
  /usr/include/pcl-1.7/pcl/filters/impl/conditional_removal.hpp
  /usr/include/pcl-1.7/pcl/filters/impl/filter.hpp
+ /usr/include/pcl-1.7/pcl/filters/impl/filter_indices.hpp
+ /usr/include/pcl-1.7/pcl/filters/impl/statistical_outlier_removal.hpp
+ /usr/include/pcl-1.7/pcl/filters/statistical_outlier_removal.h
  /usr/include/pcl-1.7/pcl/for_each_type.h
  /usr/include/pcl-1.7/pcl/geometry/planar_polygon.h
+ /usr/include/pcl-1.7/pcl/impl/cloud_iterator.hpp
  /usr/include/pcl-1.7/pcl/impl/pcl_base.hpp
  /usr/include/pcl-1.7/pcl/impl/point_types.hpp
  /usr/include/pcl-1.7/pcl/io/boost.h
@@ -240,14 +251,36 @@ CMakeFiles/add_plane.dir/add_plane.cpp.o
  /usr/include/pcl-1.7/pcl/io/ply/ply.h
  /usr/include/pcl-1.7/pcl/io/ply/ply_parser.h
  /usr/include/pcl-1.7/pcl/io/ply_io.h
+ /usr/include/pcl-1.7/pcl/kdtree/flann.h
+ /usr/include/pcl-1.7/pcl/kdtree/impl/kdtree_flann.hpp
+ /usr/include/pcl-1.7/pcl/kdtree/kdtree.h
+ /usr/include/pcl-1.7/pcl/kdtree/kdtree_flann.h
+ /usr/include/pcl-1.7/pcl/octree/impl/octree_pointcloud.hpp
+ /usr/include/pcl-1.7/pcl/octree/impl/octree_search.hpp
+ /usr/include/pcl-1.7/pcl/octree/octree_base.h
+ /usr/include/pcl-1.7/pcl/octree/octree_container.h
+ /usr/include/pcl-1.7/pcl/octree/octree_iterator.h
+ /usr/include/pcl-1.7/pcl/octree/octree_key.h
+ /usr/include/pcl-1.7/pcl/octree/octree_nodes.h
+ /usr/include/pcl-1.7/pcl/octree/octree_pointcloud.h
+ /usr/include/pcl-1.7/pcl/octree/octree_search.h
  /usr/include/pcl-1.7/pcl/pcl_base.h
  /usr/include/pcl-1.7/pcl/pcl_config.h
  /usr/include/pcl-1.7/pcl/pcl_exports.h
  /usr/include/pcl-1.7/pcl/pcl_macros.h
  /usr/include/pcl-1.7/pcl/point_cloud.h
+ /usr/include/pcl-1.7/pcl/point_representation.h
  /usr/include/pcl-1.7/pcl/point_traits.h
  /usr/include/pcl-1.7/pcl/point_types.h
  /usr/include/pcl-1.7/pcl/register_point_struct.h
+ /usr/include/pcl-1.7/pcl/search/impl/kdtree.hpp
+ /usr/include/pcl-1.7/pcl/search/impl/organized.hpp
+ /usr/include/pcl-1.7/pcl/search/impl/search.hpp
+ /usr/include/pcl-1.7/pcl/search/kdtree.h
+ /usr/include/pcl-1.7/pcl/search/octree.h
+ /usr/include/pcl-1.7/pcl/search/organized.h
+ /usr/include/pcl-1.7/pcl/search/pcl_search.h
+ /usr/include/pcl-1.7/pcl/search/search.h
  /usr/include/pcl-1.7/pcl/visualization/area_picking_event.h
  /usr/include/pcl-1.7/pcl/visualization/boost.h
  /usr/include/pcl-1.7/pcl/visualization/cloud_viewer.h

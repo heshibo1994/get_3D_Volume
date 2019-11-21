@@ -12,3 +12,10 @@ add_definitions(${PCL_DEFINITIONS})
 
 add_executable (add_plane add_plane.cpp)
 target_link_libraries (add_plane ${PCL_LIBRARIES})
+
+
+
+add_executable (read_ply read_ply.cpp)
+target_link_libraries (read_ply ${PCL_LIBRARIES})
+
+
