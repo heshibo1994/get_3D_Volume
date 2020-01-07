@@ -30,24 +30,23 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
     outfile_detect.open(detect_path,ios::app);
     for (int i = 0;i<corners.size();i++){
         outfile_detect<<name<<" "<<corners[i][0]<<" "<<corners[i][1]<<endl;
+        // outfile_detect<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
         outfile_detect<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
-        //cout<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
-        
     }
-    for(int i =40;i<50;i++){
-        cv::Mat markerImage;
-        cv::aruco::drawMarker(dictionary,i,750,markerImage);
-        cv::imwrite("markerImage"+to_string(i)+".jpg", markerImage);
-    }
+    // for(int i =40;i<50;i++){
+    //     cv::Mat markerImage;
+    //     cv::aruco::drawMarker(dictionary,i,220,markerImage);
+    //     cv::imwrite("markerImage"+to_string(i)+".jpg", markerImage);
+    // }
 
 
     outfile_opencv.open(opencv_path,ios::app);
     if (ids.size() > 0) {
         cv::aruco::drawDetectedMarkers(image, corners, ids);//绘制检测到的靶标的框
         std::vector<cv::Vec3d> rvecs, tvecs;
-        cv::aruco::estimatePoseSingleMarkers(corners, 0.207, cameraMatrix, distCoeffs, rvecs, tvecs);//求解旋转矩阵rvecs和平移矩阵tvecs
+        cv::aruco::estimatePoseSingleMarkers(corners, 1.0, cameraMatrix, distCoeffs, rvecs, tvecs);//求解旋转矩阵rvecs和平移矩阵tvecs
         for(int i =0 ;i<ids.size();i++){
-            if (ids[i] == 42){
+            if (ids[i] == 45){
                 outfile_opencv<<name<<" t: "<<tvecs[i][0]<<" "<<tvecs[i][1]<<" "<<tvecs[i][2]<<endl;
                 cout<<name<<" t: "<<tvecs[i][0]<<" "<<tvecs[i][1]<<" "<<tvecs[i][2]<<endl;
             }
@@ -55,14 +54,17 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
     
 
         // draw axis for each marker
-        for(int i=0; i<ids.size(); i++)
-            cv::aruco::drawAxis(image, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
+        for(int i=0; i<ids.size(); i++){ 
+            cv::aruco::drawAxis(image, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1); 
+            cv::imwrite(name, image);
+        }
     }
     outfile_opencv.close();
     outfile_detect.close();
 
     cv::imshow("out", image);
-    cv::waitKey();
+   
+    //cv::waitKey();
 }
 
 

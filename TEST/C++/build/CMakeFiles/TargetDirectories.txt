@@ -1,0 +1,5 @@
+/home/lab606/auto_exe/TEST/C++/build/CMakeFiles/edit_cache.dir
+/home/lab606/auto_exe/TEST/C++/build/CMakeFiles/rebuild_cache.dir
+/home/lab606/auto_exe/TEST/C++/build/CMakeFiles/abc.dir
+/home/lab606/auto_exe/TEST/C++/build/CMakeFiles/pointcloud.dir
+/home/lab606/auto_exe/TEST/C++/build/CMakeFiles/detect.dir

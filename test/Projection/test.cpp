@@ -6,9 +6,11 @@ using namespace Eigen;
 using namespace std;
 int main()
 {
-	//Eigen::Vector3d v1 = Eigen::Vector3d(-0.00145967, -0.0261071, -0.0415782); 
-    Eigen::Vector3d v1 = Eigen::Vector3d(3, 2, 1); 
-    Eigen::Vector3d v2 = Eigen::Vector3d(1, 2, 1);
+
+
+	Eigen::Vector3d v1 = Eigen::Vector3d(-0.0199446, -0.390857, -0.243998); 
+    //Eigen::Vector3d v1 = Eigen::Vector3d(3, 2, 1); 
+    Eigen::Vector3d v2 = Eigen::Vector3d(0, 0, 1);
     double angle  = acos(v1.dot(v2)/(v1.norm()*v2.norm()));
     Eigen::Vector3d axis = v1.normalized().cross(v2.normalized());
     // cout<<"v1:"<<v1<<endl;

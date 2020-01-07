@@ -1,0 +1,15 @@
+%YAML:1.0
+---
+x_min: -25
+x_max: 50
+y_max: 30
+y_min: -0.5
+K: 2.5
+
+
+Marker1: {marker:45,corner: 3}
+Marker2: {marker:44,corner: 0}
+Marker3: {marker:44,corner: 3}
+Marker4: {marker:40,corner: 0}
+Marker5: {marker:40,corner: 3}
+Far: {marker:40,corner: 3}

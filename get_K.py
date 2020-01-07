@@ -8,7 +8,8 @@ import sys
 f = open(sys.argv[1])
 l = f.readlines()
 pose = [i for i in l if ".jpg" in i]
-pose.sort(key = lambda x:int(x.split(" ")[-1][:-5]))
+
+#pose.sort(key = lambda x:int(x.split(" ")[-1][:-5]))
 data = [i.split(" ")[5:8]+[i.split(" ")[-1][:i.split(" ")[-1].find(".")]] for i in pose]
 x = []
 y = []
@@ -51,6 +52,7 @@ def distance(a,b):
 map = fun(colmap,opencv)
 f = open(sys.argv[3],'w')
 for i in range(len(map)):
+	#f.write(str(map[i][0])+' ')
 	s = " ".join(str(i) for i in (map[i][1]+map[i][2]))
 	f.write(s)
 	f.write('\n')
