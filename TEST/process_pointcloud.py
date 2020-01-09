@@ -13,6 +13,8 @@ point_Rtxtpath = sys.argv[4]
 worldplypath = sys.argv[5]
 
 
+Rr = np.array([[0.91846,-0.394136,0.0329753],[-0.394136,-0.905125,0.159392],[-0.0329753,-0.159392,-0.986664]])
+
 # 提取二维码，角点，和原点数据
 def getData(marker_corner_newpath,markerAndFarpath):
   f1 = open(marker_corner_newpath)
@@ -25,14 +27,19 @@ def getData(marker_corner_newpath,markerAndFarpath):
   print("Mark",Marker)
   print("Far",Far)
 
+
+
+
   marker_point = []
   far_point = []
   for marker in Marker:
+    print(marker)
     for line in marker_corner_newlines:
       if marker in line:
         temp = [float(p) for p in line.split(" ")[3:]]
         if temp not in marker_point:
           marker_point.append(temp)
+          print(temp)
 
 
   for line in marker_corner_newlines:
@@ -40,36 +47,38 @@ def getData(marker_corner_newpath,markerAndFarpath):
         temp = [float(p) for p in line.split(" ")[3:]]
         if temp not in far_point:
           far_point.append(temp)
-  print("far",far_point)
   return (marker_point,far_point)
  
+
+
 # 获取X，Y
-def getR(marker_point):
-  Rr =    [[2.15966,-0.168739,0.0937677],[-0.168739,-1.13852,1.83758],[-0.0937677,-1.83758,-1.14713]]
+def getR(marker_point,Rr):
+
   X = []
   Y = []
-  for i in range(len(marker_point)):
-    l = [ 0,0 ,0]
-    l[0] = marker_point[i][0]*Rr[0][0]+marker_point[i][1]*Rr[0][1]+marker_point[i][2]*Rr[0][2]
-    l[1] = marker_point[i][0]*Rr[1][0]+marker_point[i][1]*Rr[1][1]+marker_point[i][2]*Rr[1][2]
-    l[2] = marker_point[i][0]*Rr[2][0]+marker_point[i][1]*Rr[2][1]+marker_point[i][2]*Rr[2][2]
-    X.append(l[0])
-    Y.append(l[1])
+  for i in range(len(marker_point)):   
+    l = Rr.dot(np.array([marker_point[i]]).transpose())
+    # l[0] = marker_point[i][0]*Rr[0][0]+marker_point[i][1]*Rr[0][1]+marker_point[i][2]*Rr[0][2]
+    # l[1] = marker_point[i][0]*Rr[1][0]+marker_point[i][1]*Rr[1][1]+marker_point[i][2]*Rr[1][2]
+    # l[2] = marker_point[i][0]*Rr[2][0]+marker_point[i][1]*Rr[2][1]+marker_point[i][2]*Rr[2][2]
+    X.append(float(l[0]))
+    Y.append(float(l[1]))
+  print("X",X)
   return (X,Y)
-
 # 获取原点
-def getFar(far_point):    
+def getFar(far_point,Rr):    
   X_farpoint = []
   Y_farpoint = []
-  Rr =    [[2.15966,-0.168739,0.0937677],[-0.168739,-1.13852,1.83758],[-0.0937677,-1.83758,-1.14713]]
   for j in range(len(far_point)):
-    l = [ 0,0 ,0]
-    l[0] = round(far_point[j][0]*Rr[0][0]+far_point[j][1]*Rr[0][1]+far_point[j][2]*Rr[0][2],2)
-    l[1] = round(far_point[j][0]*Rr[1][0]+far_point[j][1]*Rr[1][1]+far_point[j][2]*Rr[1][2],2)
-    l[2] = round(far_point[j][0]*Rr[2][0]+far_point[j][1]*Rr[2][1]+far_point[j][2]*Rr[2][2],2)
-    X_farpoint.append(l[0])
-    Y_farpoint.append(l[1])
+    # l = [ 0,0 ,0]
+    # l[0] = round(far_point[j][0]*Rr[0][0]+far_point[j][1]*Rr[0][1]+far_point[j][2]*Rr[0][2],2)
+    # l[1] = round(far_point[j][0]*Rr[1][0]+far_point[j][1]*Rr[1][1]+far_point[j][2]*Rr[1][2],2)
+    # l[2] = round(far_point[j][0]*Rr[2][0]+far_point[j][1]*Rr[2][1]+far_point[j][2]*Rr[2][2],2)
+    l = Rr.dot(np.array([far_point[j]]).transpose())
+    X_farpoint.append(float(l[0]))
+    Y_farpoint.append(float(l[1]))
   print("X_far",X_farpoint)
+  print("Y_far",Y_farpoint)
   x_farpoint = sum(X_farpoint)/len(X_farpoint)
   y_farpoint = sum(Y_farpoint)/len(Y_farpoint)
   return (x_farpoint,y_farpoint)
@@ -100,6 +109,8 @@ def getCloud(k,b,x_farpoint,y_farpoint,point_Rtxtpath,worldplypath):
   x = abs(b)/(k**2+1)**0.5
   y = abs((y_farpoint*k+x_farpoint)/k)/(1+1/k**2)**0.5
 
+  print("平面：",cos,sin,x,y)
+
 
   f = open(point_Rtxtpath)
   lines = f.readlines()
@@ -116,13 +127,27 @@ def getCloud(k,b,x_farpoint,y_farpoint,point_Rtxtpath,worldplypath):
     g = lines[i].split(" ")[4]
     b = lines[i].split(" ")[5]
     l = [0,0,0]
+
     l[0] = cos*point[0]+sin*point[1]+x
     l[1] = -sin*point[0]+cos*point[1]+y
-    l[2] = point[2]+4.7
+    l[2] = point[2]+3.67
     fw1.write(str(l[0])+" "+str(l[1])+" "+str(l[2])+" "+str(r)+" "+str(g)+" "+str(b))
 
+
+  l1 = [-1.32,-0.056]
+  l2 = [-1.34,-0.543]
+  l3 = [-1.30,1.695]
+  l = [l1,l2,l3]
+  for i in l:
+      li = [0,0]
+      li[0] = cos*i[0]+sin*i[1]+x
+      li[1] = -sin*i[0]+cos*i[1]+y
+      print("li",li)
+  
+
+
 marker_point,far_point = getData(marker_corner_newpath ,markerAndFarpath)
-X,Y = getR(marker_point)
-x_farpoint,y_farpoint = getFar(far_point)
+X,Y = getR(marker_point,Rr)
+x_farpoint,y_farpoint = getFar(far_point,Rr)
 k,b = getleastsq(X,Y)
 getCloud(k,b,x_farpoint,y_farpoint,point_Rtxtpath,worldplypath)

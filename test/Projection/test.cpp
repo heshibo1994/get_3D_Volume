@@ -8,7 +8,10 @@ int main()
 {
 
 
-	Eigen::Vector3d v1 = Eigen::Vector3d(-0.0199446, -0.390857, -0.243998); 
+	Eigen::Vector3d v1 = Eigen::Vector3d(-0.00895437,-0.0432825 ,-0.267926); 
+
+
+
     //Eigen::Vector3d v1 = Eigen::Vector3d(3, 2, 1); 
     Eigen::Vector3d v2 = Eigen::Vector3d(0, 0, 1);
     double angle  = acos(v1.dot(v2)/(v1.norm()*v2.norm()));

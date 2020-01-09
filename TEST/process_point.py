@@ -45,17 +45,21 @@ for i in range(len(a)):
 			for n in [1,3,5,7]:
 				near_point = [0,0]
 				index = -1
-				min_distance = 100
+				min_distance = 100000
 				for m in range(len(temp)):
-					distance = (a[i][n] - temp[m][0])**2 + (a[i][n+1] - temp[m][1])**2
+					distance = ((a[i][n]-temp[m][0])**2+ (a[i][n+1]-temp[m][1])**2)  
 					if distance < min_distance:
 						min_distance = distance
 						near_point = [temp[m][0],temp[m][1]]
 						index = temp[m][2]
-				if index != -1:
-						print(a[i][0],a[i][n],a[i][n+1],near_point,index,point3D[index])
-						output3Dpoints.append(point3D[index])
-						marker_corner_new.append([a[i][0],a[i][-1],str(n/2),point3D[index][0],point3D[index][1],point3D[index][2]])	
+				print("min_dis,",min_distance)
+				print(near_point)
+				print("index,",index)
+				if index != -1 and min_distance<10:					
+					print(a[i][0],a[i][n],a[i][n+1],near_point,index,point3D[index])
+					output3Dpoints.append(point3D[index])
+					marker_corner_new.append([a[i][0],a[i][-1],str(n/2),point3D[index][0],point3D[index][1],point3D[index][2]])	
+
 			continue 
 print(marker_corner_new)
 for m in range(len(marker_corner_new)):

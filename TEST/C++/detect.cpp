@@ -41,6 +41,24 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string Mar
         " "<<corners[i][3].x<<" "<<corners[i][3].y<<endl;
     }
     outfile_marker_corner.close();
+
+    // if (ids.size() > 0) {
+    //     cv::aruco::drawDetectedMarkers(image, corners, ids);//绘制检测到的靶标的框
+    //     std::vector<cv::Vec3d> rvecs, tvecs;
+    //     cv::aruco::estimatePoseSingleMarkers(corners, 1.0, cameraMatrix, distCoeffs, rvecs, tvecs);//求解旋转矩阵rvecs和平移矩阵tvecs
+
+    
+
+    //     // draw axis for each marker
+    //     for(int i=0; i<ids.size(); i++){ 
+    //         cv::aruco::drawAxis(image, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1); 
+    //         cv::imwrite(name, image);
+    //     }
+    // }
+
+    // cv::imshow("image",image);
+    // cv::waitKey(0);
+
 }
 
 
@@ -66,7 +84,7 @@ int main(int argc, char *argv[])
             string name = string(p->d_name); 
             cv::Mat image = imread(string(argv[2])+"//"+name);
             detect (image,cameraMatrix,distCoeffs,name,Marker_corner_path);
-            //cv::waitKey(0);
+            cv::waitKey(0);
         }  
     }  
     closedir(dir);//关闭指定目录

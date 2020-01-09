@@ -1,6 +1,6 @@
 #!/bin/bash
 
-work_space="//home//lab606//auto_exe//Data//data12//"
+work_space="//home//lab606//auto_exe//Data//data15//"
 echo "开始检测图像中所有的二维码"
 opencv_path=${work_space}opencv.txt
 detect_path=${work_space}detect.txt

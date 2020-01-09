@@ -33,9 +33,7 @@ Matrix3d getR(Vector3d v1)
     double angle  = acos(v1.dot(v2)/(v1.norm()*v2.norm()));
     Eigen::Vector3d axis = v1.normalized().cross(v2.normalized());
     Eigen::AngleAxisd RotationAngleAxis(angle,axis.normalized());                             
-    Eigen::Matrix3d R = RotationAngleAxis.toRotationMatrix();
-    Eigen::Vector3d v_resize = R*v1;    
-    Eigen::Matrix3d Rr = R/v_resize[2];
+    Eigen::Matrix3d Rr = RotationAngleAxis.toRotationMatrix();
 	return Rr;  
 }
 

@@ -29,9 +29,8 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
     cout<<name<<endl;
     outfile_detect.open(detect_path,ios::app);
     for (int i = 0;i<corners.size();i++){
-        outfile_detect<<name<<" "<<corners[i][0]<<" "<<corners[i][1]<<endl;
-        // outfile_detect<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
-        outfile_detect<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
+        cout<<name<<" "<<corners[i][0]<<" "<<corners[i][1]<<endl;
+        cout<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
     }
     // for(int i =40;i<50;i++){
     //     cv::Mat markerImage;
@@ -44,12 +43,11 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
     if (ids.size() > 0) {
         cv::aruco::drawDetectedMarkers(image, corners, ids);//绘制检测到的靶标的框
         std::vector<cv::Vec3d> rvecs, tvecs;
-        cv::aruco::estimatePoseSingleMarkers(corners, 1.0, cameraMatrix, distCoeffs, rvecs, tvecs);//求解旋转矩阵rvecs和平移矩阵tvecs
+        cv::aruco::estimatePoseSingleMarkers(corners, 0.058, cameraMatrix, distCoeffs, rvecs, tvecs);//求解旋转矩阵rvecs和平移矩阵tvecs
         for(int i =0 ;i<ids.size();i++){
-            if (ids[i] == 45){
-                outfile_opencv<<name<<" t: "<<tvecs[i][0]<<" "<<tvecs[i][1]<<" "<<tvecs[i][2]<<endl;
+                cout<<ids[i]<<endl;
+                cout<<name<<" r: "<<rvecs[i]<<endl;
                 cout<<name<<" t: "<<tvecs[i][0]<<" "<<tvecs[i][1]<<" "<<tvecs[i][2]<<endl;
-            }
         }
     
 

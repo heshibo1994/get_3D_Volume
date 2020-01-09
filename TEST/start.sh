@@ -1,6 +1,6 @@
 #!/bin/bash
 
-work_space="//home//lab606//auto_exe//TEST//Data//"
+work_space="//home//lab606//auto_exe//TEST//Data2//"
 
 
 # 中间文件的路径
@@ -38,6 +38,10 @@ cloud_cut=${work_space}//cloud_cut.ply
 mba=${work_space}//mba.ply
 
 
+
+markerAndFar=${work_space}//markerAndFar.txt
+cloud_resize_path=${work_space}//cloud_resize.ply
+world_path=${work_space}//world_resize.ply
 echo "检测图像中所有二维码角点"
 # cd C++/build
 # ./detect $calibration $imagesFile $marker_corner
@@ -55,8 +59,8 @@ echo "检测图像中所有二维码角点"
 
 # cd ..
 # cd ..
-# python process_pointcloud.py $marker_corner_new $abc $setting $point_Rtxt $worldply
+python process_pointcloud.py $marker_corner_new $abc $markerAndFar $point_Rtxt $worldply
 
 cd C++/build
-./pointcloud $setting $worldply $cloud_filter $cloud_cut  $mba
+./pointcloud $setting $worldply $cloud_filter $cloud_cut  $mba $cloud_resize_path $world_path
 

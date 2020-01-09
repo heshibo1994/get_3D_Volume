@@ -2,8 +2,8 @@
 ---
 x_min: -25
 x_max: 50
-y_max: 30
-y_min: -0.5
+y_max: 32.5
+y_min: -1.25
 K: 2.5
 
 
