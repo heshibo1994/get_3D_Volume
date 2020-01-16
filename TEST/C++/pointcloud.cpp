@@ -69,11 +69,13 @@ int main(int argc, char * argv[])
     //将切割后的结果放在cloud_cut(argv[4])后
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_cut(new pcl::PointCloud<pcl::PointXYZRGB>);
     for (size_t i = 0;i<cloud_filter->points.size();i++){
-        if (cloud_filter->points[i].x>x_min/K && 
-            cloud_filter->points[i].x<x_max/K &&
-            cloud_filter->points[i].y>y_min/K && 
-            cloud_filter->points[i].y<y_max/K &&
-            cloud_filter->points[i].z>z_min/K){
+        if (cloud_filter->points[i].x>x_min && 
+            cloud_filter->points[i].x<x_max &&
+            cloud_filter->points[i].y>y_min && 
+            cloud_filter->points[i].y<y_max) 
+            // &&
+        // cloud_filter->points[i].z>z_min)
+            {
 
       
                 pcl::PointXYZRGB point ;
@@ -121,7 +123,7 @@ int main(int argc, char * argv[])
 	mba::index<2> grid2 = { 3,3 };
 	mba::MBA<2> interp2(lo2, hi2, grid2, coo, val);
 
-    int num = (x_max-x_min)*(y_max-y_min)*20*20/K/K;
+    int num = (x_max-x_min)*(y_max-y_min)*20*20;
 
 	std::ofstream prez_ply(mba_plypath);
 	prez_ply<<"ply\n";
@@ -137,22 +139,22 @@ int main(int argc, char * argv[])
 
 
     double total = 0;
-    int k = 0;
+    int kk = 0;
 
-	for (double i =x_min/K; i <x_max/K;i=i+0.05){
-		for (double  j=y_min/K;j<y_max/K;j=j+0.05){
+	for (double i =x_min; i <x_max;i=i+0.05){
+		for (double  j=y_min;j<y_max;j=j+0.05){
 			mba::point<2> pt_q;
 			pt_q[0] = i;
 			pt_q[1] = j;
 			double pre_z = interp2(pt_q);
-			prez_ply<<i<<" "<<j<<" "<<pre_z<<" 255 0 0\n";
+			prez_ply<<i*K<<" "<<j*K<<" "<<pre_z*K<<" 255 0 0\n";
             if (pre_z>0){
                 total+=pre_z;
-                k+=1;
+                kk+=1;
             }
 		}
 	}
-    double Volume =(x_max-x_min)*(y_max-y_min)*total*K/k;
+    double Volume =(x_max-x_min)*(y_max-y_min)*total*K*K*K/kk;
     cout<<"体积: "<<Volume<<" m^3"<<endl;
 
    string cloud_resize_path = string(argv[6]);       //mbaply
@@ -160,15 +162,14 @@ int main(int argc, char * argv[])
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_resize(new pcl::PointCloud<pcl::PointXYZRGB>);
     for (size_t i = 0;i<cloud_cut->points.size();i++){
-
             pcl::PointXYZRGB point1 ;
-            point1.x = cloud_cut->points[i].x*scale ;
-            point1.y = cloud_cut->points[i].y*scale ;
-            point1.z = cloud_cut->points[i].z*scale;
+            point1.x = cloud_cut->points[i].x*K ;
+            point1.y = cloud_cut->points[i].y*K ;
+            point1.z = cloud_cut->points[i].z*K;
             point1.r = cloud_cut->points[i].r ;
             point1.g = cloud_cut->points[i].g ;
             point1.b = cloud_cut->points[i].b ;
-            //cout<<cloud_cut->points[i].x<<" "<<cloud_cut->points[i].y<<" "<<cloud_cut->points[i].z<<" "<<point1.x<<" "<<point1.y<<" "<<point1.z<<endl;
+            //cout<<point1.x<<" "<<point1.y<<" "<<point1.z<<endl;
             cloud_resize->push_back(point1);
         
     }
@@ -182,9 +183,9 @@ int main(int argc, char * argv[])
     for (size_t i = 0;i<cloud->points.size();i++){
 
             pcl::PointXYZRGB point2 ;
-            point2.x = cloud->points[i].x*scale ;
-            point2.y = cloud->points[i].y*scale ;
-            point2.z = cloud->points[i].z*scale;
+            point2.x = cloud->points[i].x*K ;
+            point2.y = cloud->points[i].y*K ;
+            point2.z = cloud->points[i].z*K;
             point2.r = cloud->points[i].r ;
             point2.g = cloud->points[i].g ;
             point2.b = cloud->points[i].b ;

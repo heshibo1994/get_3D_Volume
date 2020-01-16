@@ -36,7 +36,10 @@ for p in range(3,len(lines_point3D)):
 marker_corner_new = []
 f_image = open(image_path)
 lines_image = f_image.readlines()
-for i in range(len(a)):
+print("提取2d点对应的3d点")
+#for i in range(len(a)):
+for i in range(0,len(a)):
+	print(str(i)+"/"+str(len(a)))
 	for j in range(len(lines_image)):
 		if a[i][0] in lines_image[j]: 
 			l = lines_image[j+1].split(" ")
@@ -52,11 +55,8 @@ for i in range(len(a)):
 						min_distance = distance
 						near_point = [temp[m][0],temp[m][1]]
 						index = temp[m][2]
-				print("min_dis,",min_distance)
-				print(near_point)
-				print("index,",index)
 				if index != -1 and min_distance<10:					
-					print(a[i][0],a[i][n],a[i][n+1],near_point,index,point3D[index])
+					#print(a[i][0],a[i][n],a[i][n+1],near_point,index,point3D[index])
 					output3Dpoints.append(point3D[index])
 					marker_corner_new.append([a[i][0],a[i][-1],str(n/2),point3D[index][0],point3D[index][1],point3D[index][2]])	
 
@@ -65,11 +65,16 @@ print(marker_corner_new)
 for m in range(len(marker_corner_new)):
 	fmarker_corner_new.write(" ".join(marker_corner_new[m])+'\n')
 
+
 temp = []
+# temp_dict
 for point in output3Dpoints:
-	if point not in temp:
-		print(point)
-		temp.append(point)
+	# temp_l.append(point)
+	# temp_dict[point] = temp_dict.get(point,0)+1
+	# if point not in temp:
+	# 	print(point)
+	temp.append(point)
+# print(temp_dict)
 fw.write(str(len(temp))+"\n")
 for i in temp:
 	fw.write(" ".join(i)+"\n")	

@@ -32,11 +32,11 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
         cout<<name<<" "<<corners[i][0]<<" "<<corners[i][1]<<endl;
         cout<<name<<" "<<corners[i][2]<<" "<<corners[i][3]<<endl;
     }
-    // for(int i =40;i<50;i++){
-    //     cv::Mat markerImage;
-    //     cv::aruco::drawMarker(dictionary,i,220,markerImage);
-    //     cv::imwrite("markerImage"+to_string(i)+".jpg", markerImage);
-    // }
+     for(int i =40;i<50;i++){
+         cv::Mat markerImage;
+         cv::aruco::drawMarker(dictionary,i,220,markerImage);
+         cv::imwrite("markerImage"+to_string(i)+".jpg", markerImage);
+     }
 
 
     outfile_opencv.open(opencv_path,ios::app);
@@ -62,7 +62,7 @@ void detect(cv::Mat image,Mat cameraMatrix,Mat distCoeffs,string name,string ope
 
     cv::imshow("out", image);
    
-    //cv::waitKey();
+    cv::waitKey();
 }
 
 

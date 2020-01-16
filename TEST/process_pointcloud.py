@@ -13,7 +13,15 @@ point_Rtxtpath = sys.argv[4]
 worldplypath = sys.argv[5]
 
 
-Rr = np.array([[0.91846,-0.394136,0.0329753],[-0.394136,-0.905125,0.159392],[-0.0329753,-0.159392,-0.986664]])
+# Rr = np.array([[0.91846,-0.394136,0.0329753],[-0.394136,-0.905125,0.159392],[-0.0329753,-0.159392,-0.986664]])
+
+#Rr = np.array([[0.0760993,-0.995787,0.0511606],[-0.995787, -0.0732663,0.0551413],[-0.0511606, -0.0551413,-0.997167]])
+
+#Rr = np.array([[-0.139659,  0.973704, -0.179991],[ 0.973704,  0.168086,  0.153781],[0.179991, -0.153781, -0.971573]])
+
+Rr = np.array([[-0.0967076,   0.965654,  -0.241165],[0.965654,0.14974,0.212347],[0.241165 ,-0.212347 ,-0.946968]])
+
+ 
 
 # 提取二维码，角点，和原点数据
 def getData(marker_corner_newpath,markerAndFarpath):
@@ -33,20 +41,49 @@ def getData(marker_corner_newpath,markerAndFarpath):
   marker_point = []
   far_point = []
   for marker in Marker:
+    
     print(marker)
+    temp_dict1 = {} 
     for line in marker_corner_newlines:
       if marker in line:
         temp = [float(p) for p in line.split(" ")[3:]]
-        if temp not in marker_point:
-          marker_point.append(temp)
-          print(temp)
+        # if temp not in marker_point:
+        #   marker_point.append(temp)
+        marker_point.append(temp)
 
+        s = str(temp)
+        if s in temp_dict1.keys():
+          temp_dict1[s] +=1
+        else:
+          temp_dict1[s] = 1
+    for i in temp_dict1.keys():
+      if temp_dict1[i]>100:
+        print(i,temp_dict1[i])
 
+  
   for line in marker_corner_newlines:
       if Far in line:
         temp = [float(p) for p in line.split(" ")[3:]]
-        if temp not in far_point:
-          far_point.append(temp)
+        # if temp not in far_point:
+        far_point.append(temp)
+
+        # s = str(temp)
+        # if s in temp_dict1.keys():
+        #   temp_dict1[s] +=1
+        # else:
+        #   temp_dict1[s] = 1
+
+# 42 1
+# ('[-1.25578, 0.832423, 4.47253]', 136)
+# 42 2
+# ('[-1.222, 1.2289, 4.36232]', 172)
+# 42 3
+# ('[-1.64715, 1.27417, 4.25089]', 154)
+
+
+
+  marker_point = [[-1.25578, 0.832423, 4.47253],[-1.222, 1.2289, 4.36232]]
+  far_point = [[-1.222, 1.2289, 4.36232]]
   return (marker_point,far_point)
  
 
@@ -63,12 +100,14 @@ def getR(marker_point,Rr):
     # l[2] = marker_point[i][0]*Rr[2][0]+marker_point[i][1]*Rr[2][1]+marker_point[i][2]*Rr[2][2]
     X.append(float(l[0]))
     Y.append(float(l[1]))
-  print("X",X)
+    print("z,",l[2])
+  #print("X",X)
   return (X,Y)
 # 获取原点
 def getFar(far_point,Rr):    
   X_farpoint = []
   Y_farpoint = []
+
   for j in range(len(far_point)):
     # l = [ 0,0 ,0]
     # l[0] = round(far_point[j][0]*Rr[0][0]+far_point[j][1]*Rr[0][1]+far_point[j][2]*Rr[0][2],2)
@@ -81,6 +120,7 @@ def getFar(far_point,Rr):
   print("Y_far",Y_farpoint)
   x_farpoint = sum(X_farpoint)/len(X_farpoint)
   y_farpoint = sum(Y_farpoint)/len(Y_farpoint)
+
   return (x_farpoint,y_farpoint)
 
 ##需要拟合的函数func :指定函数的形状
@@ -130,20 +170,9 @@ def getCloud(k,b,x_farpoint,y_farpoint,point_Rtxtpath,worldplypath):
 
     l[0] = cos*point[0]+sin*point[1]+x
     l[1] = -sin*point[0]+cos*point[1]+y
-    l[2] = point[2]+3.67
+    l[2] = point[2]+ 4.72
     fw1.write(str(l[0])+" "+str(l[1])+" "+str(l[2])+" "+str(r)+" "+str(g)+" "+str(b))
 
-
-  l1 = [-1.32,-0.056]
-  l2 = [-1.34,-0.543]
-  l3 = [-1.30,1.695]
-  l = [l1,l2,l3]
-  for i in l:
-      li = [0,0]
-      li[0] = cos*i[0]+sin*i[1]+x
-      li[1] = -sin*i[0]+cos*i[1]+y
-      print("li",li)
-  
 
 
 marker_point,far_point = getData(marker_corner_newpath ,markerAndFarpath)

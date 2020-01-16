@@ -1,8 +1,6 @@
 #!/bin/bash
 
-work_space="//home//lab606//auto_exe//TEST//Data2//"
-
-
+work_space="//home//lab606//auto_exe//TEST//text//"
 # 中间文件的路径
 # 三位重建相机内参
 calibration=${work_space}//calibration.yml
@@ -63,4 +61,3 @@ python process_pointcloud.py $marker_corner_new $abc $markerAndFar $point_Rtxt $
 
 cd C++/build
 ./pointcloud $setting $worldply $cloud_filter $cloud_cut  $mba $cloud_resize_path $world_path
-
